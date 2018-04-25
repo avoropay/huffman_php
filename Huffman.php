@@ -22,6 +22,11 @@ class Huffman
         $this->bin_tree($this->char_tree[0], '');
     }
 
+    public function __debugInfo() {
+        return ['CharTree' => $this->char_tree,
+            'Dictionary' => $this->dictionary];
+    }
+
     private function count_char()
     {
         $this->char_f = array_count_values($this->string);

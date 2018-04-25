@@ -16,3 +16,4 @@ $obj = new HuffmanCodeFile('in_file.bin', 'out_file.bin',1024);
     if ($obj->encode_file() === 1) {
         // Good
     };
+var_dump($obj);

@@ -31,20 +31,24 @@ class HuffmanCodeFile extends Huffman
                             parent::encode($this->huffmanBuff);
                             if (fwrite($this->fileDstHandle, $this->encoded) === FALSE) {
                                 $status = -1;
+                                throw new Exception("Can't write to file!");
                                 break;
                             }
                         }
                     } else {
                         $status = -2;
+                        throw new Exception("Can't open Destination file!");
                     }
                 } else {
                     $status = -3;
+                    throw new Exception("Can't open Source file!");
                 }
             } else {
                 $status = -4;
+                throw new Exception("Source file does not exists!");
             }
         } catch (Exception $e) {
-            $status = -1;
+            echo $e->getMessage();
         }
         return $status;
     }

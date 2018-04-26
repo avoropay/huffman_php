@@ -22,7 +22,22 @@ class Huffman
         $this->bin_tree($this->char_tree[0], '');
     }
 
-    public function __debugInfo() {
+    function iterateVisible() {
+        echo "Huffman::iterateVisible:\n";
+        foreach ($this as $key => $value) {
+            $k = serialize($key);
+            $v = serialize($value);
+            print "$k => $v\n";
+        }
+    }
+    public function __toString()
+    {
+        return "Debug message from Huffman Class : Char Tree = " . serialize($this->char_tree) . ",
+               Dictionary = " . serialize($this->dictionary);
+    }
+
+    public function __debugInfo()
+    {
         return ['CharTree' => $this->char_tree,
             'Dictionary' => $this->dictionary];
     }

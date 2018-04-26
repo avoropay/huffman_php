@@ -5,7 +5,7 @@ class ClassAutoloader {
         spl_autoload_register(array($this, 'loader'));
     }
     private function loader($className) {
-        include $className . '.php';
+        include __DIR__ . '/' . $className . '.php';
     }
 }
 
@@ -17,3 +17,14 @@ $obj = new HuffmanCodeFile('in_file.bin', 'out_file.bin',1024);
         // Good
     };
 var_dump($obj);
+echo $obj;
+
+echo "\n";
+/*
+foreach($obj as $key => $value) {
+    print "$key => $value\n";
+}
+echo "\n";
+*/
+
+$obj->iterateVisible();

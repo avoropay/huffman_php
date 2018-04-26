@@ -4,6 +4,8 @@ class Huffman
     private $string;
     private $char_f;
     private $char_tree;
+    private $pack_char;
+    private $unPakedSize;
     private $dictionary;
     public $encoded;
     public $decoded;
@@ -17,6 +19,7 @@ class Huffman
         $this->count_char();
         $this->char_tree = array_keys($this->char_f);
 
+        $this->pack_char = pack('LC*', $this->unPakedSize, count($this->char_tree), ...$this->char_tree);
         $this->build_tree();
         $this->dictionary = [];
         $this->bin_tree($this->char_tree[0], '');
@@ -73,8 +76,10 @@ class Huffman
     public function encode(&$buff)
     {
         $this->string = unpack('C*', $buff);
+        $this->unPakedSize = strlen($buff);
 
         $this->_init();
+
         $this->encoded = '';
         $bite_counter = 0;
         $bite_max = 7;
@@ -98,6 +103,9 @@ class Huffman
             $bite <<= ($bite_max - $bite_counter);
             $this->encoded .= pack('C', $bite);
         }
+        // Size of packed file
+        $this->pack_char .= pack('LC', strlen($this->encoded), ($bite_max - $bite_counter));
+        $this->encoded = $this->pack_char . $this->encoded;
     }
 
     public function decode()

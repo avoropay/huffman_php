@@ -7,6 +7,7 @@ class Huffman
     private $dictionary;
     public $encoded;
     public $decoded;
+    public $to_string;
 
     public function __construct()
     {
@@ -24,7 +25,20 @@ class Huffman
 
     public function __debugInfo() {
         return ['CharTree' => $this->char_tree,
-            'Dictionary' => $this->dictionary];
+                'Dictionary' => $this->dictionary];
+    }
+
+    public function __toString()
+    {
+        $to_string = serialize($this->dictionary);
+        return $to_string;
+    }
+
+    function iterateVisible() {
+        echo "Huffman::iterateVisible:\n";
+        foreach ($this as $key => $value) {
+           print "$key => $value\n";
+        }
     }
 
     private function count_char()

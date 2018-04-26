@@ -17,3 +17,4 @@ $obj = new HuffmanCodeFile('in_file.bin', 'out_file.bin',1024);
         // Good
     };
 var_dump($obj);
+echo($obj);

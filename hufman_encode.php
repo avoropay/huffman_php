@@ -16,14 +16,8 @@ $obj = new HuffmanCodeFile('in_file.bin', 'out_file.bin',1024);
         // Good
     };
 var_dump($obj);
-echo $obj;
+//echo $obj;
 
-echo "\n";
-/*
-foreach($obj as $key => $value) {
-    print "$key => $value\n";
+foreach ($obj as $a => $b) {
+    print "$a: $b<br>";
 }
-echo "\n";
-*/
-
-$obj->iterateVisible();

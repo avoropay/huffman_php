@@ -1,5 +1,5 @@
 <?php
-class Huffman
+class Huffman implements Iterator
 {
     private $string;
     private $char_f;
@@ -25,14 +25,48 @@ class Huffman
         $this->bin_tree($this->char_tree[0], '');
     }
 
-    function iterateVisible() {
+    public function rewind()
+    {
+        echo "перемотка в начало<br>";
+        reset($this->dictionary);
+    }
+
+    public function current()
+    {
+        $dictionary = current($this->dictionary);
+        echo "текущий: $dictionary<br>";
+        return $dictionary;
+    }
+
+    public function key()
+    {
+        $dictionary = key($this->dictionary);
+        echo "ключ: $dictionary<br>";
+        return $dictionary;
+    }
+
+    public function next()
+    {
+        $dictionary = next($this->dictionary);
+        echo "следующий: $dictionary<br>";
+        return $dictionary;
+    }
+
+    public function valid()
+    {
+        $key = key($this->dictionary);
+        $dictionary = ($key !== NULL && $key !== FALSE);
+        echo "верный: $dictionary<br>";
+        return $dictionary;
+    }
+    /*public function iterateVisible() {
         echo "Huffman::iterateVisible:\n";
         foreach ($this as $key => $value) {
             $k = serialize($key);
             $v = serialize($value);
             print "$k => $v\n";
         }
-    }
+    }*/
     public function __toString()
     {
         return "Debug message from Huffman Class : Char Tree = " . serialize($this->char_tree) . ",
